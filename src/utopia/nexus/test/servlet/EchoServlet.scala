@@ -1,18 +1,11 @@
-package servlet
+package utopia.nexus.test.servlet
 
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import utopia.flow.generic.ValueConversions._
-import java.time.Instant
 import utopia.nexus.http.Response
 import utopia.flow.generic.DataType
-import utopia.flow.generic.StringType
-import collection.JavaConverters._
-import utopia.flow.util.NullSafe._
-import scala.util.Try
-import scala.util.Success
-import scala.util.Failure
 import javax.servlet.annotation.MultipartConfig
 import utopia.nexus.servlet.HttpExtensions._
 import utopia.nexus.http.ServerSettings
@@ -37,7 +30,7 @@ class EchoServlet extends HttpServlet
     // INITIAL CODE    -----------------------
     
     DataType.setup()
-    private implicit val settings = ServerSettings("http://localhost:9999", Paths.get("D:/Uploads"))
+    private implicit val settings: ServerSettings = ServerSettings("http://localhost:9999", Paths.get("D:/Uploads"))
     
     
     // IMPLEMENTED METHODS    ----------------
@@ -46,7 +39,7 @@ class EchoServlet extends HttpServlet
     {
         val request = req.toRequest.get
         
-        val buffer = new mutable.Model()
+        val buffer = mutable.Model()
         buffer.update("method", request.method.toString())
         buffer.update("url", request.targetUrl)
         buffer.update("path", request.path.map(_.toString()))
