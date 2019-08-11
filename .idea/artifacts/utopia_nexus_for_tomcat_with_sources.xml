@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="utopia-nexus-for-tomcat-with-sources">
+    <output-path>$PROJECT_DIR$/out/artifacts/utopia_nexus_for_tomcat_with_sources</output-path>
+    <root id="archive" name="utopia-nexus-for-tomcat-with-sources.jar">
+      <element id="module-output" name="Nexus-for-Tomcat" />
+      <element id="module-source" name="Nexus-for-Tomcat" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
