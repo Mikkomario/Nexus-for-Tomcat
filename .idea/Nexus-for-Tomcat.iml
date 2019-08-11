@@ -12,15 +12,15 @@
     <orderEntry type="module" module-name="Utopia-Access-Scala" />
     <orderEntry type="module" module-name="Utopia-Flow-Scala" />
     <orderEntry type="module" module-name="Utopia-Nexus-Scala" />
+    <orderEntry type="library" name="scala-sdk-2.12.8" level="application" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/Users/Mikkomario/tomcat9/lib/servlet-api.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/servlet-api.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="scala-sdk-2.12.8" level="application" />
   </component>
 </module>

@@ -45,6 +45,24 @@ Usage Notes
                 location            = "D:/Uploads" // Replace this with your desired file upload directory path
         )
 
+    If you wish to test your Tomcat setup before creating or testing your own servlet, you can use
+    utopia.nexus.test.servlet.EchoServlet class
+
+
+v1.0.2  --------------------------
+
+    Updates & Changes
+    -----------------
+
+        Added support for Flow v1.6, Access v1.1.1 and Nexus v1.2
+
+
+    Required Libraries
+    ------------------
+        - Utopia Flow v1.6+
+        - Utopia Access v1.1.1+
+        - Utopia Nexus v1.2+
+
 
 v1.0.1  --------------------------
 
