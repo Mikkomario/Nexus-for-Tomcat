@@ -86,7 +86,7 @@ object HttpExtensions
 
                 // TODO: Add parameter decoding
                 val paramValues = r.getParameterNames.asScala.map { pName => 
-                        (pName, JSONReader.parseValue(r.getParameter(pName))) }.flatMap { case (name, value) => 
+                        (pName, JSONReader(r.getParameter(pName))) }.flatMap { case (name, value) =>
                         if (value.isSuccess) Some(name, value.get) else None }
                 val parameters = Model(paramValues.toVector)
 
@@ -95,7 +95,7 @@ object HttpExtensions
                 val javaCookies = Option(r.getCookies).map { _.toVector }.getOrElse(Vector())
                 val cookies = javaCookies.map { javaCookie => Cookie(javaCookie.getName, 
                         javaCookie.getValue.toOption.flatMap { 
-                        JSONReader.parseValue(_).toOption }.getOrElse(Value.empty(StringType)), 
+                        JSONReader(_).toOption }.getOrElse(Value.emptyWithType(StringType)),
                         if (javaCookie.getMaxAge < 0) None else Some(javaCookie.getMaxAge), 
                         javaCookie.getSecure) }
                 
