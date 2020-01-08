@@ -13,7 +13,7 @@ import utopia.flow.parse.JSONReader
 import utopia.flow.datastructure.immutable.Value
 import utopia.flow.generic.StringType
 
-import scala.util.Try
+import scala.util.{Success, Try}
 import utopia.nexus.http.Request
 import utopia.nexus.http.ServerSettings
 import utopia.access.http.Method
@@ -24,6 +24,7 @@ import utopia.nexus.http.StreamedBody
 import javax.servlet.http.Part
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.net.URLDecoder
 import java.nio.charset.Charset
 import java.util
 
@@ -84,10 +85,9 @@ object HttpExtensions
             {
                 val path = r.getRequestURI.toOption.flatMap(Path.parse)
 
-                // TODO: Add parameter decoding
                 val paramValues = r.getParameterNames.asScala.map { pName => 
-                        (pName, JSONReader(r.getParameter(pName))) }.flatMap { case (name, value) =>
-                        if (value.isSuccess) Some(name, value.get) else None }
+                        (pName, parseQueryParam(r.getParameter(pName))) }.flatMap { case (name, value) =>
+                    value.toOption.map { name -> _ } }
                 val parameters = Model(paramValues.toVector)
 
                 val headers = Headers(r.getHeaderNames.asScala.map { hName => (hName, r.getHeader(hName)) }.toMap)
@@ -110,6 +110,16 @@ object HttpExtensions
             }
             else
                 None
+        }
+        
+        private def parseQueryParam(paramValue: String)(implicit settings: ServerSettings) =
+        {
+            val decoded = settings.expectedParameterEncoding match
+            {
+                case Some(encoding) => Try { URLDecoder.decode(paramValue, encoding.charSet.name()) }
+                case None => Success(paramValue)
+            }
+            decoded.flatMap { JSONReader(_) }
         }
         
         private def bodyFromRequest(request: HttpServletRequest, headers: Headers) = 

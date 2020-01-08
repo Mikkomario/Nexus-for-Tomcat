@@ -49,6 +49,14 @@ Usage Notes
     utopia.nexus.test.servlet.EchoServlet class
 
 
+v1.0.3 (beta)  -------------------
+
+    Updates & Changes
+    -----------------
+
+        Query (uri) parameters are now properly decoded according to used ServerSettings
+
+
 v1.0.2  --------------------------
 
     Updates & Changes
