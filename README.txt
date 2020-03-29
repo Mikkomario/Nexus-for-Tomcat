@@ -42,19 +42,27 @@ Usage Notes
                 fileSizeThreshold   = 1048576,  // 1 MB
                 maxFileSize         = 10485760, // 10 MB
                 maxRequestSize      = 20971520, // 20 MB
-                location            = "D:/Uploads" // Replace this with your desired file upload directory path
+                location            = "D:/Uploads" // Replace this with your desired file upload directory path (optional)
         )
 
     If you wish to test your Tomcat setup before creating or testing your own servlet, you can use
     utopia.nexus.test.servlet.EchoServlet class
 
 
-v1.0.3 (beta)  -------------------
+v1.0.3  ---------------------------
 
     Updates & Changes
     -----------------
 
         Query (uri) parameters are now properly decoded according to used ServerSettings
+
+
+    Required Libraries
+    ------------------
+        - Utopia Flow v1.6.1+
+        - Utopia Access v1.1.2+
+        - Utopia Nexus v1.3+
+        - servlet.api.jar (from Tomcat/lib)
 
 
 v1.0.2  --------------------------
