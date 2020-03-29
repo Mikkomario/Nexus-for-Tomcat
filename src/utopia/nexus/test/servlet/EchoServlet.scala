@@ -9,7 +9,6 @@ import utopia.flow.generic.DataType
 import javax.servlet.annotation.MultipartConfig
 import utopia.nexus.servlet.HttpExtensions._
 import utopia.nexus.http.ServerSettings
-import java.nio.file.Paths
 import utopia.flow.datastructure.mutable
 import utopia.flow.datastructure.immutable.Model
 import utopia.nexus.http.Body
@@ -23,14 +22,14 @@ import utopia.nexus.http.Body
         fileSizeThreshold   = 1048576,  // 1 MB
         maxFileSize         = 10485760, // 10 MB
         maxRequestSize      = 20971520, // 20 MB
-        location            = "D:/Uploads"
 )
+// Used to contain: location            = "D:/Uploads"
 class EchoServlet extends HttpServlet
 {
     // INITIAL CODE    -----------------------
     
     DataType.setup()
-    private implicit val settings: ServerSettings = ServerSettings("http://localhost:9999", Paths.get("D:/Uploads"))
+    private implicit val settings: ServerSettings = ServerSettings("http://localhost:9999")
     
     
     // IMPLEMENTED METHODS    ----------------
